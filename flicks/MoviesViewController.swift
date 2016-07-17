@@ -18,7 +18,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
    override func viewDidLoad() {
       super.viewDidLoad()
-
       // Do any additional setup after loading the view.
 
       movieTableView.dataSource = self
@@ -28,7 +27,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(key)")
       let request = NSURLRequest(URL: url!)
       let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
-
 
       // Display 'Heads Up Display'
       MBProgressHUD.showHUDAddedTo(self.view, animated: true)
@@ -44,12 +42,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                self.movieTableView.reloadData()
             }
          }
+
+         if let error = errorOrNil {
+            self.view.hidden = true
+            print(error.localizedDescription)
+         }
          // Hide HUD
          MBProgressHUD.hideHUDForView(self.view, animated: true)
       })
-
-
-
       task.resume()
    }
 
@@ -77,7 +77,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       if let urlString = movie["poster_path"] as? String {
          let url = NSURL(string:"https://image.tmdb.org/t/p/w45" + urlString)
          cell.movieImage.setImageWithURL(url!)      }
-      
+
       //print("row \(indexPath.row)")
       return cell
    }
@@ -85,12 +85,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+   // In a storyboard-based application, you will often want to do a little preparation before navigation
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
       print ( "prepare for segue")
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+      // Get the new view controller using segue.destinationViewController.
+      // Pass the selected object to the new view controller.
 
       let movieCell = sender as! UITableViewCell
       let indexPath = movieTableView.indexPathForCell(movieCell)
@@ -98,7 +98,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
       let movieDetailViewController = segue.destinationViewController as! MovieDetailViewController
       movieDetailViewController.movie = movie
-
-    }
-
+      
+   }
+   
 }
