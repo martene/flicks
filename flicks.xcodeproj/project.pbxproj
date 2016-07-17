@@ -13,6 +13,7 @@
 		1B0649D51D3757FC008F8D33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B0649D31D3757FC008F8D33 /* LaunchScreen.storyboard */; };
 		1B0649DE1D375862008F8D33 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0649DD1D375862008F8D33 /* MoviesViewController.swift */; };
 		1B7659B41D38575C00684684 /* MovieViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7659B31D38575C00684684 /* MovieViewCell.swift */; };
+		1BC3E0CF1D3B575F002FE421 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC3E0CE1D3B575F002FE421 /* MovieDetailViewController.swift */; };
 		EFFA41551C2950E89B05FCF1 /* Pods_flicks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB206C11CA59A0D991915A44 /* Pods_flicks.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		1B0649D61D3757FC008F8D33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B0649DD1D375862008F8D33 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		1B7659B31D38575C00684684 /* MovieViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewCell.swift; sourceTree = "<group>"; };
+		1BC3E0CE1D3B575F002FE421 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		38AB2D0C61B5B0E8F17CC9F5 /* Pods-flicks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flicks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flicks/Pods-flicks.debug.xcconfig"; sourceTree = "<group>"; };
 		CB206C11CA59A0D991915A44 /* Pods_flicks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flicks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F00BDD018BDFA44B9B6C8EFF /* Pods-flicks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flicks.release.xcconfig"; path = "Pods/Target Support Files/Pods-flicks/Pods-flicks.release.xcconfig"; sourceTree = "<group>"; };
@@ -63,10 +65,10 @@
 		1B0649C91D3757FC008F8D33 /* flicks */ = {
 			isa = PBXGroup;
 			children = (
+				1BC3E0CD1D3B549C002FE421 /* view */,
 				1B0649DC1D375839008F8D33 /* controller */,
 				1B0649CA1D3757FC008F8D33 /* AppDelegate.swift */,
 				1B0649CE1D3757FC008F8D33 /* Main.storyboard */,
-				1B7659B31D38575C00684684 /* MovieViewCell.swift */,
 				1B0649D11D3757FC008F8D33 /* Assets.xcassets */,
 				1B0649D31D3757FC008F8D33 /* LaunchScreen.storyboard */,
 				1B0649D61D3757FC008F8D33 /* Info.plist */,
@@ -78,8 +80,17 @@
 			isa = PBXGroup;
 			children = (
 				1B0649DD1D375862008F8D33 /* MoviesViewController.swift */,
+				1BC3E0CE1D3B575F002FE421 /* MovieDetailViewController.swift */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		1BC3E0CD1D3B549C002FE421 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				1B7659B31D38575C00684684 /* MovieViewCell.swift */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		3F481125136CBEE0AC2E6567 /* Frameworks */ = {
@@ -222,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BC3E0CF1D3B575F002FE421 /* MovieDetailViewController.swift in Sources */,
 				1B0649CB1D3757FC008F8D33 /* AppDelegate.swift in Sources */,
 				1B0649DE1D375862008F8D33 /* MoviesViewController.swift in Sources */,
 				1B7659B41D38575C00684684 /* MovieViewCell.swift in Sources */,
@@ -287,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -326,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -342,7 +354,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wmlabs.codepath.training.ios.flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -355,7 +367,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wmlabs.codepath.training.ios.flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
