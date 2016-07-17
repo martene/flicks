@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -28,7 +29,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       let request = NSURLRequest(URL: url!)
       let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
 
+
+      // Display 'Heads Up Display'
+      MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+
       let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, reponseOrNil, errorOrNil) in
+         // this is only for testing MBProgressHUD or 'Simulator > Reset Content and Settings' from your simulator
+         //sleep(3)
+
          if let data = dataOrNil {
             if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
                // NSLog("Rest response: \(responseDictionary)")
@@ -36,7 +44,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                self.movieTableView.reloadData()
             }
          }
+         // Hide HUD
+         MBProgressHUD.hideHUDForView(self.view, animated: true)
       })
+
+
+
       task.resume()
    }
 
