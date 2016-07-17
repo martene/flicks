@@ -20,37 +20,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       super.viewDidLoad()
       // Do any additional setup after loading the view.
 
+      //Adding Pull-to-Refresh
+      let refreshControl = UIRefreshControl()
+      refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
+      movieTableView.insertSubview(refreshControl, atIndex: 0)
+
       movieTableView.dataSource = self
       movieTableView.delegate = self
 
-      let key = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-      let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(key)")
-      let request = NSURLRequest(URL: url!)
-      let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
 
-      // Display 'Heads Up Display'
-      MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+      loadNetworkRequest()
 
-      let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, reponseOrNil, errorOrNil) in
-         // this is only for testing MBProgressHUD or 'Simulator > Reset Content and Settings' from your simulator
-         //sleep(3)
-
-         if let data = dataOrNil {
-            if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
-               // NSLog("Rest response: \(responseDictionary)")
-               self.movies = (responseDictionary["results"] as! [NSDictionary])
-               self.movieTableView.reloadData()
-            }
-         }
-
-         if let error = errorOrNil {
-            self.view.hidden = true
-            print(error.localizedDescription)
-         }
-         // Hide HUD
-         MBProgressHUD.hideHUDForView(self.view, animated: true)
-      })
-      task.resume()
    }
 
    override func didReceiveMemoryWarning() {
@@ -100,5 +80,45 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       movieDetailViewController.movie = movie
       
    }
-   
+
+   func loadNetworkRequest(){
+      let key = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+      let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(key)")
+      let request = NSURLRequest(URL: url!)
+      let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: nil, delegateQueue: NSOperationQueue.mainQueue())
+
+      // Display 'Heads Up Display'
+      MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+
+      let task: NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler: { (dataOrNil, reponseOrNil, errorOrNil) in
+         // this is only for testing MBProgressHUD or 'Simulator > Reset Content and Settings' from your simulator
+         //sleep(3)
+
+         if let data = dataOrNil {
+            if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(data, options:[]) as? NSDictionary {
+               // NSLog("Rest response: \(responseDictionary)")
+               self.movies = (responseDictionary["results"] as! [NSDictionary])
+               self.movieTableView.reloadData()
+            }
+         }
+
+         if let error = errorOrNil {
+            self.view.hidden = true
+            print(error.localizedDescription)
+         }
+         // Hide HUD
+         MBProgressHUD.hideHUDForView(self.view, animated: true)
+      })
+      task.resume()
+
+   }
+
+   func refreshControlAction(refreshControl: UIRefreshControl){
+
+      loadNetworkRequest()
+
+      // Tell the refreshControl to stop spinning
+      refreshControl.endRefreshing()
+   }
+
 }
