@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -62,9 +61,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
       // hint???
       cell.movieSynopsis.sizeToFit()
 
-      let urlString = movie["poster_path"]! as! String
-      let url = NSURL(string:"https://image.tmdb.org/t/p/w342" + urlString)
-      cell.movieImage.setImageWithURL(url!)
+      if let urlString = movie["poster_path"] as? String {
+         let url = NSURL(string:"https://image.tmdb.org/t/p/w45" + urlString)
+         cell.movieImage.setImageWithURL(url!)      }
+      else{
+         cell.movieImage.image = nil
+      }
       //print("row \(indexPath.row)")
       return cell
    }
@@ -78,6 +80,5 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // Get the new view controller using segue.destinationViewController.
     // Pass the selected object to the new view controller.
     }
-    */
-   
+    */   
 }
