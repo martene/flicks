@@ -14,17 +14,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" id="2NO-4g-hvO">
+                            <searchBar contentMode="redraw" placeholder="Search" id="AgU-KP-kZg">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" id="2NO-4g-hvO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="77" id="kfs-Ti-0iK" customClass="MovieViewCell" customModule="flicks">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="77"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="75" id="kfs-Ti-0iK" customClass="MovieViewCell" customModule="flicks">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kfs-Ti-0iK" id="E3c-ze-Wy8">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="76.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Bz-GX-3HM">
@@ -47,7 +51,6 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="movieImage" destination="11p-ty-Qnl" id="KmV-ZH-sJm"/>
                                             <outlet property="movieSynopsis" destination="NMC-UK-qxg" id="rqq-f7-FnT"/>
@@ -63,6 +66,9 @@
                     <navigationItem key="navigationItem" id="aj4-Hb-sTz"/>
                     <connections>
                         <outlet property="movieTableView" destination="2NO-4g-hvO" id="xDv-D3-i7N"/>
+                        <outlet property="navItem" destination="aj4-Hb-sTz" id="qli-Gg-STI"/>
+                        <outlet property="navigationItem" destination="aj4-Hb-sTz" id="TEI-XD-0wu"/>
+                        <outlet property="searchBar" destination="AgU-KP-kZg" id="CXj-SE-DVb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -87,7 +93,7 @@
                                 <subviews>
                                     <view alpha="0.80000000000000004" contentMode="scaleToFill" id="sNN-uY-qlX">
                                         <rect key="frame" x="8" y="324" width="264" height="400"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Av0-As-Qf2">
                                                 <rect key="frame" x="8" y="80" width="248" height="15"/>
@@ -134,11 +140,17 @@
         <!--Navigation Controller-->
         <scene sceneID="id3-rS-nW8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N5S-Ms-sdL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoviesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="N5S-Ms-sdL" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G6e-Rn-5sZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="5"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -150,4 +162,5 @@
             <point key="canvasLocation" x="694" y="368"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>
